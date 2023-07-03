@@ -1,0 +1,48 @@
+import logging
+
+#Configuramos para estipular o nivel de informação que queremos. Passamos o que queremos que faça com os logs que serão gerados
+logging.basicConfig(level=logging.INFO, filename="testando.log", format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+
+firsttest = int(input("Digite a primeira nota do teste: "))
+secondtest = int(input("Digite a segunda nota do teste: "))
+therdtest = int(input("Digite a terceira nota do teste: "))
+periodo = str(input("Digite o periodo de ensino: "))
+
+def resultado_final(firsttest, secondtest, therdtest):
+    if firsttest + secondtest + therdtest / 3 >= 6:
+        return "APROVADO"
+        logging.info(f"As notas estão de ok")
+    else:
+        return "REPROVADO"
+        logging.info("As notas estão muito baixas")
+
+def pode_recuperar(firsttest, secondtest, therdtest):
+    if firsttest + secondtest + therdtest >= 12:
+        return "PODE FAZER RECUPERACAO"
+    else:
+        return "NÃO PODE FAZER RECUPERACAO"
+
+def verifica_periodo(periodo):
+     if periodo != "Manha":
+          logging.error("Não temos aula em outtro periodo sem ser manha")
+     else: 
+        logging.info("Esta tudo certo com o periodo")
+
+resultado = resultado_final(firsttest, secondtest, therdtest)
+logging.info(f"O Aluno em questão está: {resultado}")
+
+recuperacao = pode_recuperar(firsttest, secondtest, therdtest)
+logging.info(f"O Aluno em questão por conta das notas: {recuperacao}")
+
+verifica_horario = verifica_periodo(periodo)
+
+
+
+
+if firsttest > 11:
+        logging.warning("Está nota não é permitida")
+
+
+
+
+

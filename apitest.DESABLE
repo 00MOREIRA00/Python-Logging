@@ -1,0 +1,29 @@
+import uvicorn
+from fastapi import FastAPI
+import logging
+
+# Criando a instancia 
+app = FastAPI()
+logging.basicConfig(level=logging.INFO, filename="api.log", format='%(asctime)s - %(levelname)s - %(message)s')
+
+frase = "Olá mundo"
+
+# Logando inicio do serviço
+logging.info(f"Inicio do servico")
+
+@app.get("/frase")
+def chamando_frase():
+    return frase
+    logging.info(f"Foi chamado a operacao de obter com o valor {frase}")
+
+@app.post("/frase/nova/{palavra}")
+def mudar_frase(palavra):
+    frase = "{palavra}"
+    logging.info(f"Foi modificado a frase para: {palavra}")
+    return "A Frase foi modificado com sucesso"
+
+logging.info(f"Fim do servico")
+
+if __name__ == "__main__":
+    uvicorn.run(app, port=8000)
+
